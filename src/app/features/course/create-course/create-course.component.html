@@ -1,1 +1,42 @@
-<p>create-course works!</p>
+<!--<mat-card>
+  <form id="createCourseForm">
+    <mat-form-field class="full-width">
+      <mat-label>
+        nazwa
+      </mat-label>
+      <input matInput placeholder="nazwa" [(ngModel)]="createCourseCommand.title" id="title" name="title" maxlength="250"
+             required>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>
+        opis
+      </mat-label>
+      <textarea matInput placeholder="opis" [(ngModel)]="createCourseCommand.description" id="description"
+                name="description" maxlength="250" required></textarea>
+    </mat-form-field>
+    <button class="create-course-button mat-raised-button" mat-raised-button color="primary" (click)="onSubmit()">
+      utwórz kurs
+    </button>
+  </form>
+</mat-card>-->
+
+<mat-card>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="full-width">
+      <mat-label>
+        nazwa
+      </mat-label>
+      <input matInput placeholder="nazwa" formControlName="title" id="title" name="title" maxlength="250">
+    </mat-form-field>
+    <mat-form-field class="full-width description">
+      <mat-label>
+        opis
+      </mat-label>
+      <textarea matInput placeholder="opis" formControlName="description" id="description" name="description"
+                maxlength="250"></textarea>
+    </mat-form-field>
+    <button class="create-course-button mat-raised-button" mat-raised-button color="primary" type="submit">
+      utwórz kurs
+    </button>
+  </form>
+</mat-card>
