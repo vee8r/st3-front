@@ -1,1 +1,21 @@
-<p>login works!</p>
+<mat-card>
+  <form #loginForm="ngForm" id="loginForm">
+    <mat-form-field class="full-width">
+      <mat-label>
+        login
+      </mat-label>
+      <input matInput placeholder="login" [(ngModel)]="loginCommand.login" id="login" name="login" maxlength="250"
+             required>
+    </mat-form-field>
+    <mat-form-field class="full-width">
+      <mat-label>
+        hasło
+      </mat-label>
+      <input matInput type="password" placeholder="hasło" [(ngModel)]="loginCommand.password" id="password"
+             name="password" maxlength="250" required>
+    </mat-form-field>
+    <button class="login-button mat-raised-button" mat-raised-button color="primary" (click)="onSubmit()">
+      zaloguj się
+    </button>
+  </form>
+</mat-card>

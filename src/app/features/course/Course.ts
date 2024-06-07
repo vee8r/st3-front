@@ -1,4 +1,4 @@
-class Course {
+export class Course {
   constructor(public title: string, public description: string, public lessons: string) {}
 
   public getTitle(): string {

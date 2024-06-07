@@ -1,0 +1,23 @@
+<!--create new course button and table with list of courses-->
+<mat-card>
+  <button mat-raised-button color="primary" (click)="onCreateNewCourse()">Create new course</button>
+  <table mat-table [dataSource]="courses" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let course"> {{course.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let course"> {{course.description}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let course">
+        <button mat-raised-button color="primary" (click)="onEditCourse(course)">Edit</button>
+        <button mat-raised-button color="warn" (click)="onDeleteCourse(course)">Delete</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>

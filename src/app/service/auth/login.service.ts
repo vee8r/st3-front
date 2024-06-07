@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
-import {environments} from "../../environments/environments";
+import {environments} from "../../../environments/environments";
 import {MatSnackBar} from "@angular/material/snack-bar";
 
 class LoginResponse {

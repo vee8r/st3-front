@@ -1,1 +1,27 @@
-<p>register works!</p>
+<form>
+  <mat-form-field class="full-width mat-input-container">
+    <mat-label>Imię</mat-label>
+    <input matInput placeholder="firstName" [(ngModel)]="registerCommand.firstName" id="firstName" name="firstName"
+           maxlength="250" required>
+  </mat-form-field>
+  <mat-form-field class="full-width mat-input-container">
+    <mat-label>Nazwisko</mat-label>
+    <input matInput placeholder="lastName" [(ngModel)]="registerCommand.lastName" id="lastName" name="lastName"
+           maxlength="250" required>
+  </mat-form-field>
+  <mat-form-field class="full-width mat-input-container">
+    <mat-label>Hasło</mat-label>
+    <input matInput type="password" placeholder="hasło" [(ngModel)]="registerCommand.password" id="password"
+           name="password" maxlength="250" required>
+  </mat-form-field>
+  <mat-form-field class="full-width mat-input-container">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="lastName" [(ngModel)]="registerCommand.email" id="email" name="email" maxlength="250"
+           required>
+  </mat-form-field>
+
+  <button class="login-button mat-raised-button" mat-raised-button color="primary" (click)="onSubmit()">
+    Zarejestruj się
+  </button>
+
+</form>
