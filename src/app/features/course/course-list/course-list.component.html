@@ -2,9 +2,9 @@
 <mat-card>
   <button mat-raised-button color="primary" (click)="onCreateNewCourse()">Create new course</button>
   <table mat-table [dataSource]="courses" class="mat-elevation-z8">
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let course"> {{course.name}} </td>
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> title </th>
+      <td mat-cell *matCellDef="let course"> {{course.title}} </td>
     </ng-container>
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef> Description </th>

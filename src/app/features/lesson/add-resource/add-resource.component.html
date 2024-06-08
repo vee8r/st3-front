@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Dodaj zasób</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="addResource()">
+      <mat-form-field>
+        <input matInput placeholder="Tytuł" formControlName="title">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Typ" formControlName="type">
+          <mat-option value="VIDEO">Wideo</mat-option>
+          <mat-option value="PRESENTATION">Prezentacja</mat-option>
+          <mat-option value="DOCUMENT">Dokument</mat-option>
+          <mat-option value="LINK">Link</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="URL" formControlName="url">
+      </mat-form-field>
+      <button mat-raised-button color="primary" type="submit">Dodaj</button>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="closeDialog()">Anuluj</button>
+  </mat-card-actions>
+</mat-card>

@@ -1,4 +1,4 @@
-class Resource {
+export class Resource {
   constructor(public _id: number, public _title: string, public _url: string, public _type: string) {
 
   }

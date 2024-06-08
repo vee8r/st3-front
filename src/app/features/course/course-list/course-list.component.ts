@@ -1,12 +1,19 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CoursesService} from "../../../service/courses/courses.service";
 import {MatButton} from "@angular/material/button";
-import {MatCell, MatColumnDef, MatHeaderCell, MatTable, MatTableDataSource} from "@angular/material/table";
-import {MatCard} from "@angular/material/card";
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell, MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable,
+  MatTableDataSource
+} from "@angular/material/table";
+import {MatCard, MatCardHeader} from "@angular/material/card";
 import {CdkTableDataSourceInput} from "@angular/cdk/table";
 import {Course} from "../Course";
 import {MatDialog} from "@angular/material/dialog";
-import {CreateCourseComponent} from "../create-course/create-course.component";
+import {CreateEditCourseComponent} from "../create-course/create-edit-course.component";
 
 @Component({
   selector: 'app-course-list',
@@ -17,15 +24,22 @@ import {CreateCourseComponent} from "../create-course/create-course.component";
     MatColumnDef,
     MatHeaderCell,
     MatCell,
-    MatCard
+    MatCard,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef,
+    MatHeaderCellDef,
+    MatCellDef,
+    MatCardHeader
   ],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.scss'
 })
 
-export class CourseListComponent {
+export class CourseListComponent implements OnInit {
   courses: CdkTableDataSourceInput<any> = new MatTableDataSource<Course>();
-  displayedColumns: any;
+  displayedColumns = ['title', 'description', 'actions'];
   coursesData: Course[] = [];
 
   constructor(private courseService: CoursesService,
@@ -42,7 +56,6 @@ export class CourseListComponent {
       (data) => {
         this.coursesData = data;
         this.courses = new MatTableDataSource<Course>(this.coursesData);
-        console.log(data);
       },
       (error) => {
         console.log(error);
@@ -52,8 +65,11 @@ export class CourseListComponent {
 
   onCreateNewCourse() {
 
-      const dialogRef = this.dialog.open(CreateCourseComponent, {
-        // data: {name: this.name, animal: this.animal},
+      const dialogRef = this.dialog.open(CreateEditCourseComponent, {
+         data: {
+           mode: 'create',
+           course: new Course()
+         }
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -64,10 +80,27 @@ export class CourseListComponent {
   }
 
   onEditCourse(course: Course) {
+    const dialogRef = this.dialog.open(CreateEditCourseComponent, {
+      data: {
+        mode: 'edit',
+        course: course
+      }
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.loadCourses();
+    });
   }
 
   onDeleteCourse(course: Course) {
-
+    this.courseService.deleteCourse(course.id).subscribe(
+      (data) => {
+        this.loadCourses();
+      },
+      (error) => {
+        console.log(error);
+      }
+    )
   }
 }

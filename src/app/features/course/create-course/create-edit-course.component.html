@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>{{ title }}</mat-card-title>
+  </mat-card-header>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+
+    <mat-card-content>
+
+      <mat-form-field class="full-width">
+        <mat-label>Nazwa</mat-label>
+        <input matInput placeholder="Nazwa" formControlName="title" id="title" name="title" maxlength="250">
+      </mat-form-field>
+
+      <mat-form-field class="full-width description">
+        <mat-label>Opis</mat-label>
+        <textarea matInput placeholder="Opis" formControlName="description" id="description" name="description"
+                  maxlength="250"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="create-course-button mat-raised-button" mat-raised-button color="primary" type="submit">
+        Zapisz
+      </button>
+      <button class="close-dialog-button mat-raised-button" mat-raised-button color="warn" (click)="closeDialog()">
+        Zamknij
+      </button>
+    </mat-card-actions>
+  </form>
+
+</mat-card>

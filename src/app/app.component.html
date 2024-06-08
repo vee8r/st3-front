@@ -1,18 +1,37 @@
 <!-- Toolbar -->
 <div class="toolbar" role="banner">
   <div>
-    <span >
-    <mat-icon>home</mat-icon>
-    <a routerLink="/courses"> Kursy</a>
-    <a routerLink="/lessons">Lekcje</a>
+
+    <mat-sidenav-container class="example-container">
+      <mat-sidenav-content>
+
+        <span [hidden]="authService.isLoggedIn()" style="margin-right: 10px;">
+        <button mat-menu-item routerLink="register">
+          <mat-icon>add-user</mat-icon>
+          <span>rejestracja</span>
+        </button>
+        <button mat-menu-item routerLink="login">
+          <mat-icon>security</mat-icon>
+          <span>logowanie</span>
+        </button>
+      </span>
+        <span [hidden]="!authService.isLoggedIn()">
+           <button mat-menu-item routerLink="/courses">
+          <mat-icon>list</mat-icon>
+          <span>Kursy</span>
+        </button>
+
+        <button mat-menu-item routerLink="/lessons">
+          <mat-icon>table</mat-icon>
+          <span>Lekcje</span>
+        </button>
+          <button mat-menu-item (click)="authService.logout()">
+            <mat-icon>logout</mat-icon>
+            <span>Wyloguj sie</span>
+          </button>
     </span>
-    <span [hidden]="authService.isLoggedIn()" style="margin-right: 10px;">
-    <a routerLink="register">REJESTRACJA</a>
-    <a routerLink="login">LOGOWANIE</a>
-    </span>
-    <span [hidden]="!authService.isLoggedIn()">
-      <a (click)="authService.logout()">WYLOGUJ</a>
-    </span>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   </div>
 </div>
 

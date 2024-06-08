@@ -1,0 +1,26 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Szczegóły lekcji</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h2>{{lesson.title}}</h2>
+    <p>Opis: {{lesson.content}}</p>
+    <mat-divider></mat-divider>
+
+
+    <h3>Lista zasobów</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let resource of lesson.resources">
+        <h4 mat-line>{{resource.title}}</h4>
+        <p mat-line>{{resource.type}}</p>
+        <a mat-line href="{{resource.url}}" target="_blank">{{resource.url}}</a>
+      </mat-list-item>
+    </mat-list>
+    <button mat-raised-button color="primary" (click)="addResource(lesson)">Dodaj zasób</button>
+
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="warn" (click)="closeDialog()">Zamknij</button>
+  </mat-card-actions>
+</mat-card>

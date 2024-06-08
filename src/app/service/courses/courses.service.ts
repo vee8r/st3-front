@@ -23,5 +23,13 @@ export class CoursesService {
   createCourse(course: any) {
     return this.httpClient.post(`${environments.apiEndpoint}/courses`, course);
   }
+
+  deleteCourse(id: number) {
+    return this.httpClient.delete(`${environments.apiEndpoint}/courses/${id}`);
+  }
+
+  updateCourse(id: number, editCourseCommand: Course) {
+    return this.httpClient.put(`${environments.apiEndpoint}/courses/${id}`, editCourseCommand);
+  }
 }
 

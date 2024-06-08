@@ -1,1 +1,38 @@
-<p>lesson-list works!</p>
+<!--//create table with list of lesson similar to courses-->
+<!--//add button to add new lesson-->
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Lista lekcji</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <table mat-table [dataSource]="lessons" class="mat-elevation-z8">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef>Nazwa</th>
+        <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef>Opis</th>
+        <td mat-cell *matCellDef="let element">{{ element.content }}</td>
+      </ng-container>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Akcje</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="showLesson(element)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+          <button mat-icon-button (click)="editLesson(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button (click)="deleteLesson(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="createLesson()">Dodaj lekcję</button>
+  </mat-card-actions>
+</mat-card>

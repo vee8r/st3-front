@@ -1,42 +1,16 @@
-class Lesson{
-  constructor(public title: string, public content: string, public sequence: number) {
+import {Course} from "./Course";
+import {Resource} from "./Resource";
 
-  }
+export class Lesson {
 
-  public getTitle(): string {
-    return this.title;
-  }
+  public id: number = 0;
+  public title: string = "";
 
-  public getContent(): string {
-    return this.content;
-  }
+  public content: string = "";
 
-  public getSequence(): number {
-    return this.sequence;
-  }
+  public sequence: number = 0;
 
-  public setTitle(title: string): void {
-    this.title = title;
-  }
+  public course: Course = new Course();
 
-  public setContent(content: string): void {
-    this.content = content;
-  }
-
-  public setSequence(sequence: number): void {
-    this.sequence = sequence;
-  }
-
-  public toString(): string {
-    return `Lesson: ${this.title}, ${this.content}, ${this.sequence}`;
-  }
-
-
-
+  public resources: Array<Resource> = [];
 }
-
-// title;
-//
-// private String content;
-//
-// private int sequence;
