@@ -1,7 +1,11 @@
 export class Resource {
-  constructor(public _id: number, public _title: string, public _url: string, public _type: string) {
-
-  }
+  constructor(
+    public _id: number,
+    public _title: string,
+    public _url: string,
+    public _type: string,
+    public _lessonId: number
+  ) {}
 
   get title(): string {
     return this._title;
@@ -26,6 +30,7 @@ export class Resource {
   set type(value: string) {
     this._type = value;
   }
+
   get id(): number {
     return this._id;
   }
@@ -34,4 +39,11 @@ export class Resource {
     this._id = value;
   }
 
+  get lessonId(): number {
+    return this._lessonId;
+  }
+
+  set lessonId(value: number) {
+    this._lessonId = value;
+  }
 }

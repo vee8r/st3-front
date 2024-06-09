@@ -28,39 +28,33 @@ import {ResourceService} from "../../../service/lessons/resource.service";
   styleUrl: './add-resource.component.scss'
 })
 export class AddResourceComponent {
-  form: FormGroup = new FormGroup({});
+  form: FormGroup;
 
   constructor(private dialog: MatDialog,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private formBuilder: FormBuilder,
               private resourceService: ResourceService) {
-    this.initForm();
-  }
-
-  closeDialog() {
-    this.dialog.closeAll()
-  }
-
-
-  private initForm() {
-    this.form = this.formBuilder.group({
-      id: new FormControl(this.data.lesson.id),
+    this.form = new FormGroup({
       title: new FormControl(''),
       url: new FormControl(''),
-      type: new FormControl('')
+      type: new FormControl(''),
+      lessonId: new FormControl(this.data.lesson.id)
     });
   }
 
+  closeDialog() {
+    this.dialog.closeAll();
+  }
+
   addResource() {
-    this.resourceService.createResource(this.form.value)
+    const resourceData = this.form.value;
+    this.resourceService.createResource(resourceData)
       .subscribe(
         () => {
           this.dialog.closeAll();
         },
         (error) => {
-          console.log(error)
+          console.log(error);
         }
-      )
+      );
   }
-
 }

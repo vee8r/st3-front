@@ -110,7 +110,7 @@ export class LessonListComponent implements OnInit {
 
   showLesson(element: Lesson) {
     this.dialog.open(LessonDetailsComponent, {
-      width: '400px',
+      width: '800px',
       data: {
         title: 'Podgląd lekcji',
         lesson: element

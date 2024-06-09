@@ -6,9 +6,19 @@ import {Lesson} from "../../course/Lesson";
 import {MatDivider} from "@angular/material/divider";
 import {MatList, MatListItem} from "@angular/material/list";
 import {MatLine} from "@angular/material/core";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {AddResourceComponent} from "../add-resource/add-resource.component";
 import {ResourceService} from "../../../service/lessons/resource.service";
+import {Resource} from "../../course/Resource";
+import {
+  MatCell, MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef,
+  MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
 
 @Component({
   selector: 'app-lesson-details',
@@ -24,22 +34,33 @@ import {ResourceService} from "../../../service/lessons/resource.service";
     MatList,
     MatListItem,
     MatLine,
-    NgForOf
+    NgForOf,
+    MatTable,
+    MatHeaderCell,
+    MatCell,
+    MatColumnDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderCellDef,
+    MatCellDef,
+    NgIf,
+    MatHeaderRowDef,
+    MatRowDef
   ],
   templateUrl: './lesson-details.component.html',
   styleUrl: './lesson-details.component.scss'
 })
 export class LessonDetailsComponent {
   lesson: Lesson;
+  resources: Resource[] = [];
+  displayedColumns: string[] = ['id', 'title', 'type', 'url'];
 
-  constructor( private dialog: MatDialog,
-               @Inject(MAT_DIALOG_DATA) public data: any,
-               private resourceService: ResourceService) {
+  constructor(private dialog: MatDialog,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private resourceService: ResourceService) {
     this.lesson = data.lesson;
     this.getLessonResources(this.lesson);
-
   }
-
 
   closeDialog() {
     this.dialog.closeAll();
@@ -47,7 +68,7 @@ export class LessonDetailsComponent {
 
   addResource(lesson: Lesson) {
     const dialogRef = this.dialog.open(AddResourceComponent, {
-      data: {lesson}
+      data: { lesson }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -57,8 +78,8 @@ export class LessonDetailsComponent {
 
   private getLessonResources(lesson: Lesson) {
     this.resourceService.getResourcesByLessonId(lesson.id)
-      .subscribe((resources) => {
-        this.lesson.resources = resources;
+      .subscribe((resources: Resource[]) => {
+        this.resources = resources;
       });
   }
 }
